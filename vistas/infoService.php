@@ -4,13 +4,19 @@ $correo=$_REQUEST['correo'];
 $estado=$_REQUEST['estado'];
 
 $conexion = mysqli_connect('localhost', 'root', '', 'intercartonpruebas');
-if($estado==1){
-    $sql =  "UPDATE servicios SET estado='Concluido' WHERE servicioID='$buscarServicio'";
-    $result = mysqli_query($conexion, $sql);
-}else{
-    $sql =  "UPDATE servicios SET estado='Pendiente' WHERE servicioID='$buscarServicio'";
-    $result = mysqli_query($conexion, $sql);
+switch($estado){
+    case "0":
+        $sql =  "UPDATE servicios SET estado='Pendiente' WHERE servicioID='$buscarServicio'";
+        $result = mysqli_query($conexion, $sql);
+        break;
+    case "1":
+        $sql =  "UPDATE servicios SET estado='Concluido' WHERE servicioID='$buscarServicio'";
+        $result = mysqli_query($conexion, $sql);
+        break;
+    case "2":
+        break;
 }
+
 $sql =  "SELECT * from servicios WHERE servicioID='$buscarServicio'";
 $result = mysqli_query($conexion, $sql);
 $cambioEstado="1";

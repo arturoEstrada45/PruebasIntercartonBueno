@@ -48,7 +48,7 @@ $result = mysqli_query($conexion, $sql);
                             <form action="../php/conexion.php" method="POST" id="register">
                                 <div class="form-group" >
                                         <input type="text" class="form-control form-control-user" id="descripcion" name="descripcion"
-                                            placeholder="Descripcion de contrato" pattern="([a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ0-9,.-_!#$%*+&/ ]{1,10000})" required data-toggle="tooltip">
+                                            placeholder="Descripcion de contrato"  required data-toggle="tooltip">
                                     
                                 </div>
                                 <input type="hidden" name="correo" id="correo" class="form-control bg-light border-0 small" placeholder="Search for..."

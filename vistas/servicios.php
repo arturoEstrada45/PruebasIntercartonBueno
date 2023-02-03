@@ -1,6 +1,7 @@
 <?php
 $correo = $_REQUEST['correo'];
 $estado = "0";
+$estadoServicio = "2";
 $conexion = mysqli_connect('localhost', 'root', '', 'intercartonpruebas');
 $sql =  "SELECT * from empleados WHERE empleadoID='$correo'";
 $result = mysqli_query($conexion, $sql);
@@ -356,7 +357,7 @@ while ($mostrar = mysqli_fetch_array($result))
                                             <tr>
                                            
                                                 <td> <a target="_blank"
-                            href="../vistas/infoService.php?buscarServicio=<?php echo $mostrar['servicioID']?>&correo=<?php echo $correo?>&estado=<?php echo $estado?>" name="buscarServicio" value="<?php echo $mostrar['servicioID'] ?>" id="buscarServicio"><?php echo $mostrar['servicioID'] ?></a></td>
+                            href="../vistas/infoService.php?buscarServicio=<?php echo $mostrar['servicioID']?>&correo=<?php echo $correo?>&estado=<?php echo $estadoServicio?>" name="buscarServicio" value="<?php echo $mostrar['servicioID'] ?>" id="buscarServicio"><?php echo $mostrar['servicioID'] ?></a></td>
                                                 <td><?php echo $mostrar['tipoServicio'] ?></td>
                                                 <td><?php echo $mostrar['descripcion'] ?></td>
                                                 <td><?php echo $mostrar['fecha'] ?></td>

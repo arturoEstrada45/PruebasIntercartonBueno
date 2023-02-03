@@ -140,8 +140,8 @@ while ($mostrar = mysqli_fetch_array($result))
                 </div>
                 <div class="modal-body">Selecciona "Concluido" si ya terminaste tu servicio, si no solo oprime "Cancelar".</div>
                 <div class="modal-footer">
-                    <a class="btn btn-warning" href="../vistas/infoService.php?buscarServicio=<?php echo $buscarServicio?>&correo=<?php echo $correo?>&estado=<?php echo $cambioEstadoPendiente?>">Pendiente</a>
-                    <a class="btn btn-primary" href="../vistas/infoService.php?buscarServicio=<?php echo $buscarServicio?>&correo=<?php echo $correo?>&estado=<?php echo $cambioEstado?>">Concluido</a>
+                    <a class="btn btn-warning" href="#">Pendiente</a>
+                    <a class="btn btn-primary" href="#">Concluido</a>
                 </div>
             </div>
         </div>
