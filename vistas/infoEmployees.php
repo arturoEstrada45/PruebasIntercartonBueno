@@ -116,7 +116,7 @@ while ($mostrar = mysqli_fetch_array($result))
                                <?php } ?>
                                <?php if($estadoMenu=="1"){?>
                                         <div class="text-center">
-                                        <a class="small"href="../vistas/infoEmployees.php?empleado=<?php echo $empleadoID?>&correo=<?php echo $correo?>&estado=<?php echo $estado?>&estadoMenu=<?php echo $estadoUsuario?>">Información de Usuario.</a>
+                                        <a class="small" href="../vistas/infoEmployees.php?empleado=<?php echo $empleadoID?>&correo=<?php echo $correo?>&estado=<?php echo $estado?>&estadoMenu=<?php echo $estadoUsuario?>">Información de Usuario.</a>
                                     </div>
                                <?php } ?>
                                 </div>
@@ -133,14 +133,56 @@ while ($mostrar = mysqli_fetch_array($result))
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">¿Ya concluiste el servicio?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Menu para editar datos de empleado</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
+                    
                 </div>
-                <div class="modal-body">Selecciona "Concluido" si ya terminaste tu servicio, si no solo oprime "Cancelar".</div>
+                <div class="modal-body">
+                <form action="../php/conexion.php" method="POST" id="updateUser">
+                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <p class="mb-4">Cambio de correo</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                    <input type="text" class="form-control form-control-user" id="correoCambio" name="correoCambio" value="<?php echo $empleadoID?>"
+                                            placeholder="ingresa correo nuevo" pattern="[a-zA-Z0-9.#$%&*+_-]{1,35}(@intercarton.com.mx){1}" required data-toggle="tooltip" title="El correo debe ser de la empresa @intercarton.com.mx">
+                                    </div>
+                </div>
+                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <p class="mb-4">Cambio nombre</p>
+                                    </div>
+                                    <input type="hidden" name="correo" id="correo" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="busca" aria-describedby="basic-addon2" value="<?php echo $correo ?>"> 
+                                <input type="hidden" name="correoBusqueda" id="correoBusqueda" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="busca" aria-describedby="basic-addon2" value="<?php echo $empleadoID ?>"> 
+                                    <div class="col-sm-6">
+                                    <input type="text" class="form-control form-control-user" id="nombre" name="nombre" value="<?php echo $nombre?>"
+                                            placeholder="Nuevo nombre" pattern="([a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ ]{1,35})" required data-toggle="tooltip">
+                                    </div>
+                                </div><div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <p class="mb-4">Cambio apellidos</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                    <input type="text" class="form-control form-control-user" id="apellidos" name="apellidos" value="<?php echo $apellidos?>"
+                                            placeholder="Nuevos apellidos" pattern="([a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ ]{1,35})" required data-toggle="tooltip">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <p class="mb-4">Cambio contraseña plataforma</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                    <input type="text" class="form-control form-control-user" id="contrasenia" name="contrasenia" value="<?php echo $contrasenia?>"
+                                            placeholder="Nueva Contraseña" required data-toggle="tooltip">
+                                    </div>
+                                </div>
+                    </form>
                 <div class="modal-footer">
-                    <a class="btn btn-warning" href="#">Pendiente</a>
+                    <button class="btn btn-primary" type="submit" name="updateUser" form="updateUser">Actualizar usuario</button>
                     <a class="btn btn-primary" href="#">Concluido</a>
                 </div>
             </div>

@@ -75,10 +75,18 @@ function conexion($con){
     $correo = $_POST['correo'];
     Servicio::registrarServicio($tipo,$descripcion,$fecha,$asignado,$correo,$con);
       }
-      else if (isset($_POST['buscarServicio']))
-   {
-    echo "ya valio";
-      }
+      else if (isset($_POST['updateUser']))
+    {
+      $correoCambio = $_POST['correoCambio'];
+      
+      $correoBusqueda = $_POST['correoBusqueda'];
+    $nombre = $_POST['nombre'];
+    $apellidos = $_POST['apellidos'];
+    $contrasenia = $_POST['contrasenia'];
+    $correo = $_POST['correo'];
+    Empleados::actualizaEmpleado($correoCambio,$correoBusqueda,$nombre,$apellidos,$contrasenia,$correo,$con);
+   
+    }
 }
   
 ?>
