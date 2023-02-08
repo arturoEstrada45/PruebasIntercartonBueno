@@ -1,6 +1,7 @@
 <?php
 $correo = $_REQUEST['correo'];
 $estado = "0";
+$estadoMenu = "0";
 $conexion = mysqli_connect('localhost', 'root', '', 'intercartonpruebas');
 $sql =  "SELECT * from empleados WHERE empleadoID='$correo'";
 $result = mysqli_query($conexion, $sql);
@@ -22,7 +23,7 @@ while ($mostrar = mysqli_fetch_array($result))
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Intercarton</title>
+    <title>Empleados</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -51,6 +52,7 @@ while ($mostrar = mysqli_fetch_array($result))
                 <div class="sidebar-brand-text mx-3">Intercarton <sup>1.0</sup></div>
             </a>
 
+
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
@@ -66,7 +68,7 @@ while ($mostrar = mysqli_fetch_array($result))
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+            Tickets
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -84,13 +86,13 @@ while ($mostrar = mysqli_fetch_array($result))
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            <li class="nav-item active">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Activos</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones Inventario:</h6>
@@ -105,7 +107,6 @@ while ($mostrar = mysqli_fetch_array($result))
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
@@ -141,14 +142,13 @@ while ($mostrar = mysqli_fetch_array($result))
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                    
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                  
+                      
+                       
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -156,7 +156,7 @@ while ($mostrar = mysqli_fetch_array($result))
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter"></span>
+                                <span class="badge badge-danger badge-counter">3+</span>
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -207,7 +207,7 @@ while ($mostrar = mysqli_fetch_array($result))
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
                                 <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter"></span>
+                                <span class="badge badge-danger badge-counter">7</span>
                             </a>
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -308,70 +308,81 @@ while ($mostrar = mysqli_fetch_array($result))
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Lista Tickets</h1>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Tickets</h1>
+    
+</div>
 
-                    <div class="container-fluid">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Tabla Tickets</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                                <tr>
+                                <th>ID Ticket</th>
+                                    <th>Asunto</th>
+                                    <th>Descripcion</th>
+                                    <th>ID Solicitante</th>
+                                    <th>Estado</th>
+                                    <th>Prioridad</th>
+                                    <th>ID Soporte</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                            <th>ID Ticket</th>
+                                    <th>Asunto</th>
+                                    <th>Descripcion</th>
+                                    <th>ID Solicitante</th>
+                                    <th>Estado</th>
+                                    <th>Prioridad</th>
+                                    <th>ID Soporte</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                
+                                
+                                    <?php
+                                    if($estado=="0"){
+                                    $sql = "SELECT * FROM tickets";}
+                                    
+                                    $result = mysqli_query($conexion, $sql);
 
-                        <!-- Page Heading -->
-                        <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                            For more information about DataTables, please visit the <a target="_blank"
-                                href="https://datatables.net">official DataTables documentation</a>.</p>
-    
-                        <!-- DataTales Example -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
+                                    while ($mostrar = mysqli_fetch_array($result)) 
+                                    {
+                                    ?>
                                             <tr>
-                                                <th>Asunto</th>
-                                                <th>Solicitante</th>
-                                                <th>Estado</th>
-                                                <th>Prioridad</th>
-                                                <th>Asignado</th>
+                                                <td><a target="_blank"
+                            href="../vistas/infoEmployees.php?empleado=<?php echo $mostrar['empleadoID']?>&correo=<?php echo $correo?>&estado=<?php echo $estado?>&estadoMenu=<?php echo $estadoMenu?>" name="buscarServicio" value="<?php echo $mostrar['empleadoID'] ?>" id="buscarServicio"><?php echo $mostrar['empleadoID'] ?></a></td>
+                                                <td><?php echo $mostrar['nombre'] ?></td>
+                                                <td><?php echo $mostrar['apellidos'] ?></td>
+                                                <td><?php echo $mostrar['area'] ?></td>
+                                                <td><?php echo $mostrar['contrasenia'] ?></td>
+                                                <td><?php echo $mostrar['cuentaIntelisis'] ?></td>
+                                                <td><?php echo $mostrar['contraseniaIntelisis'] ?></td>
+                                                <td><?php echo $mostrar['cuentaServidor'] ?></td>
+                                                <td><?php echo $mostrar['contraseniaServidor'] ?></td>
                                             </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Asunto</th>
-                                                <th>Solicitante</th>
-                                                <th>Estado</th>
-                                                <th>Prioridad</th>
-                                                <th>Asignado</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Garrett Winters</td>
-                                                <td>Accountant</td>
-                                                <td>Tokyo</td>
-                                                <td>63</td>
-                                                <td>2011/07/25</td>
-                                            </tr>
-                                            <tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-    
-                    </div>
-                    <!-- /.container-fluid -->
-    
-                </div>
-                <!-- End of Main Content -->
+                                        <?php
+                                    }
+                                    ?>
+                             
+                                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div> <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -413,8 +424,8 @@ while ($mostrar = mysqli_fetch_array($result))
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+   <!-- Bootstrap core JavaScript-->
+   <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -422,6 +433,13 @@ while ($mostrar = mysqli_fetch_array($result))
 
     <!-- Custom scripts for all pages-->
     <script src="../js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="../js/demo/datatables-demo.js"></script>
 
 </body>
 

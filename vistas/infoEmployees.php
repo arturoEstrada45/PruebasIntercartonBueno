@@ -8,14 +8,6 @@ $estadoCuentas="1";
 
 $estadoUsuario="0";
 $conexion = mysqli_connect('localhost', 'root', '', 'intercartonpruebas');
-/*if($estado==1){
-    $sql =  "UPDATE servicios SET estado='Concluido' WHERE servicioID='$buscarServicio'";
-    $result = mysqli_query($conexion, $sql);
-}else{
-    $sql =  "UPDATE servicios SET estado='Pendiente' WHERE servicioID='$buscarServicio'";
-    $result = mysqli_query($conexion, $sql);
-}*/
-
 $sql =  "SELECT * from empleados WHERE empleadoID='$empleado'";
 $result = mysqli_query($conexion, $sql);
 $cambioEstado="1";
@@ -57,10 +49,26 @@ while ($mostrar = mysqli_fetch_array($result))
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
+    <link href="../css/textos.css" rel="stylesheet">
 </head>
 
 <body class="bg-gradient-primary">
-
+<br>
+  <br>  
+<?php if(!($estado=="0")){?>
+<div class="container div" id="mensajeCont">
+        <div class="row">
+            <div class="col-1">
+            </div>
+            <div class="col-10 justify-content-center">
+                <div class="div div-mensaje" id="mensaje">
+                    <p><?php echo $estado ?></p>
+                </div>
+            </div>
+            <div class="col-1">
+            </div>
+        </div>
+    </div><?php }?> 
     <div class="container">
 
         <!-- Outer Row -->

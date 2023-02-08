@@ -122,6 +122,7 @@ $result = mysqli_query($conexion, $sql);
                                             placeholder="Contraseña Servidor"  pattern="([a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ0-9./+*-_,]{1,10000})" required data-toggle="tooltip" data-placement="right" title="Solo letras, números y espacios">
                                     </div>
                                 </div>
+                                
                                 <button class="btn btn-primary btn-user btn-block" type="submit" name="registrarEmpleado" form="licencia">
                                     Registrar Empleado 
                                 </button>

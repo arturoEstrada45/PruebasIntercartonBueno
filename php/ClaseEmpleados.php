@@ -19,13 +19,14 @@ class Empleados
     {
         try{
         $estado=0;
-        $sql = "UPDATE empleados SET empleadoID='$correoCambio' WHERE empleadoID='$correoBusqueda'";
+        $sql = "UPDATE empleados SET empleadoID='$correoCambio',nombre='$nombre',apellidos='$apellidos',contrasenia='$contrasenia' WHERE empleadoID='$correoBusqueda'";
         mysqli_query($con, $sql);
         mysqli_close($con);
         header('location: ../vistas/infoEmployees.php?empleado='. $correoCambio.'&correo='.$correo.'&estado='.$estado.'&estadoMenu='.$estado);
         }catch (Exception $e){
         $estado="Error al ingresar datos, posiblemente el usuario ya existe";
-        header('location: ../vistas/registerEmpleado.php?correo=' . $correo. '&estado='. $estado);
+        $estadoCero=0;
+        header('location: ../vistas/infoEmployees.php?empleado='. $correoBusqueda.'&correo='.$correo.'&estado='.$estado.'&estadoMenu='.$estadoCero);
     }
     }
     
