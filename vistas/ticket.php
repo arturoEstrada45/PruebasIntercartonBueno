@@ -358,15 +358,13 @@ while ($mostrar = mysqli_fetch_array($result))
                                     ?>
                                             <tr>
                                                 <td><a target="_blank"
-                            href="../vistas/infoEmployees.php?empleado=<?php echo $mostrar['empleadoID']?>&correo=<?php echo $correo?>&estado=<?php echo $estado?>&estadoMenu=<?php echo $estadoMenu?>" name="buscarServicio" value="<?php echo $mostrar['empleadoID'] ?>" id="buscarServicio"><?php echo $mostrar['empleadoID'] ?></a></td>
-                                                <td><?php echo $mostrar['nombre'] ?></td>
-                                                <td><?php echo $mostrar['apellidos'] ?></td>
-                                                <td><?php echo $mostrar['area'] ?></td>
-                                                <td><?php echo $mostrar['contrasenia'] ?></td>
-                                                <td><?php echo $mostrar['cuentaIntelisis'] ?></td>
-                                                <td><?php echo $mostrar['contraseniaIntelisis'] ?></td>
-                                                <td><?php echo $mostrar['cuentaServidor'] ?></td>
-                                                <td><?php echo $mostrar['contraseniaServidor'] ?></td>
+                            href="../vistas/infoTickets.php?buscarTicket=<?php echo $mostrar['ticketID']?>&correo=<?php echo $correo?>&estado=<?php echo $estado?>" name="buscarTicket"  id="buscarTicket"><?php echo $mostrar['ticketID'] ?></a></td>
+                                                <td><?php echo $mostrar['asunto'] ?></td>
+                                                <td><?php echo $mostrar['descripcion'] ?></td>
+                                                <td><?php echo $mostrar['solicitanteID'] ?></td>
+                                                <td><?php echo $mostrar['estado'] ?></td>
+                                                <td><?php echo $mostrar['prioridad'] ?></td>
+                                                <td><?php echo $mostrar['soporteID'] ?></td>
                                             </tr>
                                         <?php
                                     }
