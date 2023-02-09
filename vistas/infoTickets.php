@@ -17,13 +17,18 @@ while ($mostrar = mysqli_fetch_array($result))
         $estado=$mostrar['estado'];  
         $prioridad=$mostrar['prioridad'];  
         $soporteID=$mostrar['soporteID'];
+         
+        $fecha=$mostrar['fechaAlta'];
 }
-$sql =  "SELECT * from img WHERE ticketID='$buscarTicket'";
+$sql =  "SELECT * from img WHERE ticketID='$buscarTicket' AND tipo='image/png' OR tipo='image/jpeg'";
 $result = mysqli_query($conexion, $sql);
+$imagenID="No";
 while ($mostrar = mysqli_fetch_array($result)) 
 {
         $imagenID=$mostrar['imagenID'];      
        }
+
+      
 
 ?>
 <!DOCTYPE html>
@@ -37,7 +42,7 @@ while ($mostrar = mysqli_fetch_array($result))
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Información Servicios</title>
+    <title>Información Ticket</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -63,16 +68,17 @@ while ($mostrar = mysqli_fetch_array($result))
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
+                            <?php if($imagenID!="No"){?>
+                        <div class="panel-body center"> <img target="_blank"src="../php/cargaImgTicket.php?id=<?php echo $imagenID?>" alt='<?php echo $imagenID?>' />   
+                              
+                            </div>
+                            <?php }?>
                             <div class="col-lg-6 d-none d-lg-block">
-                                
-                            <img src="../php/cargaImgTicket.php?id=<?php echo $imagenID?>" alt='<?php echo $imagenID?>' width="600" />   
-                    </div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
+                            <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-2">ID del Ticket <?php echo $buscarTicket?></h1>
                                         <h1 class="h4 text-gray-900 mb-2">Asunto del Ticket <?php echo $asunto?></h1>
-                                        <p class="mb-4"><?php echo $descripcion ?></p>
+                                        <p class="mb-4"><?php echo $asunto ?></p>
                                         <h1 class="h4 text-gray-900 mb-2">Estado del ticket:</h1>
                                         <p class="mb-4"><?php echo $estado ?></p>
                                         <h1 class="h4 text-gray-900 mb-2">¿Quién solicita el Ticket? </h1>
@@ -85,13 +91,34 @@ while ($mostrar = mysqli_fetch_array($result))
                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="text-gray-400"></i>
                                     Cambiar estado
-                                </a>
+                                 </a>
                                     </div>
                                 
                                     <div class="text-center">
                                         <a class="small" href="servicios.php?correo=<?php echo $correo ?>">Regresar a los servicios</a>
                                     </div>
                                 </div>
+                             </div>
+                            <div class="col-lg-6">
+
+                                    <div class="p-5">
+                                        <h1 class="h4 text-gray-900 mb-2">Descripcion del Ticket </h1>
+                                        <p class="mb-4"><?php echo $descripcion ?></p>
+                                        <h1 class="h4 text-gray-900 mb-2">Fecha de Ticket </h1>
+                                        <p class="mb-4"><?php echo $fecha ?></p>
+                                        <?php $qry = "SELECT * FROM img WHERE ticketID='$buscarTicket' AND tipo!='image/png' AND tipo!='image/jpeg'";
+                                        $res = mysqli_query($conexion,$qry);
+                                        
+                                        $numeroDatos= mysqli_num_rows($res);
+                                        if($numeroDatos!=0){
+                                        while($fila = mysqli_fetch_array($res))
+                                        {
+                                        
+                                        print " <h1 class=h4 text-gray-900 mb-2>Documento del Ticket</h1>        <a href='../php/descargar_archivo.php?id=$fila[imagenID]'>Descargar</a>
+                                        <br>
+                                        <br>";
+                                        }}?>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -100,6 +127,7 @@ while ($mostrar = mysqli_fetch_array($result))
             </div>
 
         </div>
+    </div>
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">

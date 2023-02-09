@@ -11,6 +11,23 @@ while ($mostrar = mysqli_fetch_array($result))
         $nombre=$mostrar['nombre'];      
    
 }
+$activo="Activo";
+$sqlActivos =  "SELECT * from tickets WHERE estado='$activo'";
+$result = mysqli_query($conexion, $sqlActivos);
+
+$numeroDatosActivos= mysqli_num_rows($result);
+$concluido="Concluido";
+$sqlActivos =  "SELECT * from tickets WHERE estado='$concluido'";
+$result = mysqli_query($conexion, $sqlActivos);
+
+$numeroConcluido= mysqli_num_rows($result);
+
+$sqlActivos =  "SELECT * from tickets";
+$result = mysqli_query($conexion, $sqlActivos);
+
+$numeroTotal= mysqli_num_rows($result);
+$cuenta=(($numeroConcluido)*100)/$numeroTotal;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -330,8 +347,8 @@ while ($mostrar = mysqli_fetch_array($result))
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$90</div>
+                                            Tickets activos</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $numeroDatosActivos?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -348,12 +365,10 @@ while ($mostrar = mysqli_fetch_array($result))
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                Tickets concluidos</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $numeroConcluido?></div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -365,16 +380,16 @@ while ($mostrar = mysqli_fetch_array($result))
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Procentaje de tickets resueltos
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $cuenta?></div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            style="width: <?php echo $cuenta?>%" aria-valuenow="50" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
@@ -395,8 +410,8 @@ while ($mostrar = mysqli_fetch_array($result))
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                               Tickets totales</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $numeroTotal?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>

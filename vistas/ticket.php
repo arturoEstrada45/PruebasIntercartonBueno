@@ -23,7 +23,7 @@ while ($mostrar = mysqli_fetch_array($result))
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Empleados</title>
+    <title>Tickets</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -326,11 +326,13 @@ while ($mostrar = mysqli_fetch_array($result))
                                 <tr>
                                 <th>ID Ticket</th>
                                     <th>Asunto</th>
-                                    <th>Descripcion</th>
+                                    <th  style="width:50px;">Descripcion</th>
                                     <th>ID Solicitante</th>
                                     <th>Estado</th>
                                     <th>Prioridad</th>
                                     <th>ID Soporte</th>
+                                    <th>Fecha Alta</th>
+                                    <th>Fecha Correccion</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -342,6 +344,8 @@ while ($mostrar = mysqli_fetch_array($result))
                                     <th>Estado</th>
                                     <th>Prioridad</th>
                                     <th>ID Soporte</th>
+                                    <th>Fecha Alta</th>
+                                    <th>Fecha Correccion</th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -349,7 +353,7 @@ while ($mostrar = mysqli_fetch_array($result))
                                 
                                     <?php
                                     if($estado=="0"){
-                                    $sql = "SELECT * FROM tickets";}
+                                    $sql = "SELECT * FROM tickets ORDER BY ticketID DESC";}
                                     
                                     $result = mysqli_query($conexion, $sql);
 
@@ -360,11 +364,13 @@ while ($mostrar = mysqli_fetch_array($result))
                                                 <td><a target="_blank"
                             href="../vistas/infoTickets.php?buscarTicket=<?php echo $mostrar['ticketID']?>&correo=<?php echo $correo?>&estado=<?php echo $estado?>" name="buscarTicket"  id="buscarTicket"><?php echo $mostrar['ticketID'] ?></a></td>
                                                 <td><?php echo $mostrar['asunto'] ?></td>
-                                                <td><?php echo $mostrar['descripcion'] ?></td>
+                                                <td  style="width:50px;"><?php echo $mostrar['descripcion'] ?></td>
                                                 <td><?php echo $mostrar['solicitanteID'] ?></td>
                                                 <td><?php echo $mostrar['estado'] ?></td>
                                                 <td><?php echo $mostrar['prioridad'] ?></td>
                                                 <td><?php echo $mostrar['soporteID'] ?></td>
+                                                <td><?php echo $mostrar['fechaAlta'] ?></td>
+                                                <td><?php echo $mostrar['fechaCorreccion'] ?></td>
                                             </tr>
                                         <?php
                                     }

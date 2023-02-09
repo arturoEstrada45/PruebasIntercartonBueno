@@ -1,8 +1,7 @@
 <?php
 if(!empty($_GET['id'])){
 $conexion = mysqli_connect('localhost', 'root', '', 'intercartonpruebas');
-$buscarTicket=$_REQUEST['buscarTicket'];
-$result = $db->query("SELECT imagenes FROM img WHERE imagenID = {$_GET['id']}");
+$result = $conexion->query("SELECT imagenes FROM img WHERE imagenID = {$_GET['id']}");
 if($result->num_rows > 0){
     $imgDatos = $result->fetch_assoc();
     
