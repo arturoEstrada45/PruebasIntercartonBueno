@@ -326,8 +326,7 @@ while ($mostrar = mysqli_fetch_array($result))
                                 <tr>
                                 <th>ID Ticket</th>
                                     <th>Asunto</th>
-                                    <th  style="width:50px;">Descripcion</th>
-                                    <th>ID Solicitante</th>
+                                   <th>ID Solicitante</th>
                                     <th>Estado</th>
                                     <th>Prioridad</th>
                                     <th>ID Soporte</th>
@@ -339,7 +338,6 @@ while ($mostrar = mysqli_fetch_array($result))
                             <tr>
                             <th>ID Ticket</th>
                                     <th>Asunto</th>
-                                    <th>Descripcion</th>
                                     <th>ID Solicitante</th>
                                     <th>Estado</th>
                                     <th>Prioridad</th>
@@ -364,7 +362,6 @@ while ($mostrar = mysqli_fetch_array($result))
                                                 <td><a target="_blank"
                             href="../vistas/infoTickets.php?buscarTicket=<?php echo $mostrar['ticketID']?>&correo=<?php echo $correo?>&estado=<?php echo $estado?>" name="buscarTicket"  id="buscarTicket"><?php echo $mostrar['ticketID'] ?></a></td>
                                                 <td><?php echo $mostrar['asunto'] ?></td>
-                                                <td  style="width:50px;"><?php echo $mostrar['descripcion'] ?></td>
                                                 <td><?php echo $mostrar['solicitanteID'] ?></td>
                                                 <td><?php echo $mostrar['estado'] ?></td>
                                                 <td><?php echo $mostrar['prioridad'] ?></td>

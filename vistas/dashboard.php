@@ -26,7 +26,12 @@ $sqlActivos =  "SELECT * from tickets";
 $result = mysqli_query($conexion, $sqlActivos);
 
 $numeroTotal= mysqli_num_rows($result);
-$cuenta=(($numeroConcluido)*100)/$numeroTotal;
+if($numeroTotal==0){
+$cuenta=0;
+}else{
+
+    $cuenta=(($numeroConcluido)*100)/$numeroTotal;
+}
 
 ?>
 <!DOCTYPE html>
