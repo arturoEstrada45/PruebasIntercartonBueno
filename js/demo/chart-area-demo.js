@@ -2,6 +2,40 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
+var mysql = require('mysql');
+// Consulta SQL.
+var sql = 'SELECT * FROM empleados';
+
+// Parámetros de conexión a la base de datos.
+var con = mysql.createConnection({
+  host: "192.168.1.133",
+  user: "root",
+  password: "",
+  database : 'intercartonpruebas'
+});
+
+// Funcion que nos permite comprobar la conexión a la base de datos.
+// con.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Connected!");
+// });
+
+// Funcion que nos devolverá resultados de la base de datos.
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+
+    // Bucle que recore los resultados y pinta en consola.
+    for(i=0; i<result.length; i++){
+    	console.log("Result: " + result[i].name);
+    }
+
+  });
+});
+
+
 function number_format(number, decimals, dec_point, thousands_sep) {
   // *     example: number_format(1234.56, 2, ',', ' ');
   // *     return: '1 234,56'
@@ -32,7 +66,7 @@ var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Enero", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
     datasets: [{
       label: "Earnings",
       lineTension: 0.3,
