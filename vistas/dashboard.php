@@ -33,6 +33,69 @@ $cuenta=0;
     $cuenta=(($numeroConcluido)*100)/$numeroTotal;
 }
 
+$numeroTotal= mysqli_num_rows($result);
+$arregloConteoMeses=array();
+$SQLFechas =  "SELECT EXTRACT(MONTH FROM fechaAlta) as fecha from tickets";
+$consultaFechas = mysqli_query($conexion, $SQLFechas);
+
+$enero=0;
+$febrero=0;
+$marzo=0;
+$abril=0;
+$mayo=0;
+$junio=0;
+$julio=0;
+$agosto=0;
+$septiembre=0;
+$octubre=0;
+$noviembre=0;
+$diciembre=0;
+while ($datos = mysqli_fetch_array($consultaFechas)) 
+{
+        array_push($arregloConteoMeses,$datos['fecha']);  
+
+}
+
+foreach($arregloConteoMeses as $meses){
+        if($meses==1){
+        $enero=$enero+1;
+        
+    }else if($meses==2){
+        $febrero=$febrero+1;
+        
+    }else if($meses==3){
+        $marzo=$marzo+1;
+        
+    } if($meses==4){
+        $abril=$abril+1;
+        
+    } if($meses==5){
+        $mayo=$mayo+1;
+        
+    } if($meses==6){
+        $junio=$junio+1;
+        
+    } if($meses==7){
+        $julio=$julio+1;
+        
+    } if($meses==8){
+        $agosto=$agosto+1;
+        
+    } if($meses==9){
+        $septiembre=$septiembre+1;
+        
+    } if($meses==10){
+        $octubre=$octubre+1;
+        
+    } if($meses==11){
+        $noviembre=$noviembre+1;
+        
+    } if($meses==12){
+        $diciembre=$diciembre+1;
+        
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -437,7 +500,7 @@ $cuenta=0;
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Tickets ingresados por mes</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -456,7 +519,19 @@ $cuenta=0;
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
+                                        <canvas id="myAreaChart"> <script>var enero= <?php echo $enero?>;
+                                        var febrero= <?php echo $febrero?>;
+                                        var marzo= <?php echo $marzo?>;
+                                        var abril= <?php echo $abril?>;
+                                        var mayo= <?php echo $mayo?>;
+                                        var junio= <?php echo $junio?>;
+                                        var julio = <?php echo $julio?>;                                
+                                        var agosto= <?php echo $agosto?>;                                
+                                        var septiembre= <?php echo $septiembre?>   ;                             
+                                        var octubre= <?php echo $octubre?>          ;                      
+                                        var noviembre= <?php echo $noviembre?>  ;
+                                        var diciembre= <?php echo $diciembre?>   ;                                                                                           
+                                        </script></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -719,7 +794,13 @@ $cuenta=0;
     <script src="../vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-area-demo.js">
+       
+    </script>
+    <script>
+         
+    </script>
+
     <script src="../js/demo/chart-pie-demo.js"></script>
 
 </body>

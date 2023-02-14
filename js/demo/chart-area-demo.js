@@ -1,41 +1,19 @@
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
-
-var mysql = require('mysql');
-// Consulta SQL.
-var sql = 'SELECT * FROM empleados';
-
-// Parámetros de conexión a la base de datos.
-var con = mysql.createConnection({
-  host: "192.168.1.133",
-  user: "root",
-  password: "",
-  database : 'intercartonpruebas'
-});
-
-// Funcion que nos permite comprobar la conexión a la base de datos.
-// con.connect(function(err) {
-//   if (err) throw err;
-//   console.log("Connected!");
-// });
-
-// Funcion que nos devolverá resultados de la base de datos.
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-
-    // Bucle que recore los resultados y pinta en consola.
-    for(i=0; i<result.length; i++){
-    	console.log("Result: " + result[i].name);
-    }
-
-  });
-});
-
-
+var enero;
+var febrero;
+var marzo;
+var abril;
+var mayo;
+var junio;
+var julio;
+var agosto;
+var septiembre;
+var octubre;
+var noviembre;
+var diciembre;
+console.log(enero);
 function number_format(number, decimals, dec_point, thousands_sep) {
   // *     example: number_format(1234.56, 2, ',', ' ');
   // *     return: '1 234,56'
@@ -68,7 +46,7 @@ var myLineChart = new Chart(ctx, {
   data: {
     labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
     datasets: [{
-      label: "Earnings",
+      label: "Tickets",
       lineTension: 0.3,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
       borderColor: "rgba(78, 115, 223, 1)",
@@ -80,7 +58,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [10000, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+      data: [enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre],
     }],
   },
   options: {
@@ -112,7 +90,7 @@ var myLineChart = new Chart(ctx, {
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return  number_format(value);
           }
         },
         gridLines: {
@@ -144,7 +122,7 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
         }
       }
     }

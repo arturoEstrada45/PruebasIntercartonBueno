@@ -20,6 +20,7 @@ while ($mostrar = mysqli_fetch_array($result))
          
         $fecha=$mostrar['fechaAlta'];
 }
+
 $sql =  "SELECT * from img WHERE ticketID='$buscarTicket' AND tipo='image/png' OR tipo='image/jpeg'";
 $result = mysqli_query($conexion, $sql);
 $imagenID="No";
