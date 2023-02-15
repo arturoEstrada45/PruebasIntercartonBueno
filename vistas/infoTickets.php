@@ -4,6 +4,18 @@ $correo=$_REQUEST['correo'];
 $estado=$_REQUEST['estado'];
 
 $conexion = mysqli_connect('localhost', 'root', '', 'intercartonpruebas');
+$cambioEstado=1;
+
+if($estado==1){
+    echo "<script> console.log($cambioEstado); </script>";
+    $fechaActual=date('Y-m-d');
+    $sql =  "UPDATE tickets SET estado='Corregido' WHERE ticketID='$buscarTicket'";
+    $result = mysqli_query($conexion, $sql);  
+    $sql =  "UPDATE tickets SET fechaCorreccion='$fechaActual' WHERE ticketID='$buscarTicket'";
+    $result = mysqli_query($conexion, $sql);  
+  
+}
+
 
 
 $sql =  "SELECT * from tickets WHERE ticketID='$buscarTicket'";
@@ -14,14 +26,13 @@ while ($mostrar = mysqli_fetch_array($result))
         $asunto=$mostrar['asunto'];        
         $descripcion=$mostrar['descripcion'];  
         $solicitante=$mostrar['solicitanteID'];  
-        $estado=$mostrar['estado'];  
+        $estadoChido=$mostrar['estado'];  
         $prioridad=$mostrar['prioridad'];  
         $soporteID=$mostrar['soporteID'];
-         
         $fecha=$mostrar['fechaAlta'];
 }
 
-$sql =  "SELECT * from img WHERE ticketID='$buscarTicket' AND tipo='image/png' OR tipo='image/jpeg'";
+$sql =  "SELECT * from img WHERE ticketID='$buscarTicket' AND (tipo='image/png' OR tipo='image/jpeg')";
 $result = mysqli_query($conexion, $sql);
 $imagenID="No";
 while ($mostrar = mysqli_fetch_array($result)) 
@@ -81,7 +92,7 @@ while ($mostrar = mysqli_fetch_array($result))
                                         <h1 class="h4 text-gray-900 mb-2">Asunto del Ticket <?php echo $asunto?></h1>
                                         <p class="mb-4"><?php echo $asunto ?></p>
                                         <h1 class="h4 text-gray-900 mb-2">Estado del ticket:</h1>
-                                        <p class="mb-4"><?php echo $estado ?></p>
+                                        <p class="mb-4"><?php echo $estadoChido ?></p>
                                         <h1 class="h4 text-gray-900 mb-2">¿Quién solicita el Ticket? </h1>
                                         <p class="mb-4"><?php echo $solicitante ?></p>
                                         <h1 class="h4 text-gray-900 mb-2">¿Quién dara soporte al Ticket? </h1>
@@ -96,7 +107,7 @@ while ($mostrar = mysqli_fetch_array($result))
                                     </div>
                                 
                                     <div class="text-center">
-                                        <a class="small" href="servicios.php?correo=<?php echo $correo ?>">Regresar a los servicios</a>
+                                        <a class="small" href="ticket.php?correo=<?php echo $correo ?>">Regresar a los tickets</a>
                                     </div>
                                 </div>
                              </div>
@@ -141,8 +152,7 @@ while ($mostrar = mysqli_fetch_array($result))
                 </div>
                 <div class="modal-body">Selecciona "Concluido" si ya terminaste tu servicio, si no solo oprime "Pendiente".</div>
                 <div class="modal-footer">
-                    <a class="btn btn-warning" href="../vistas/infoTickets.php?buscarTicket=<?php echo $buscarTicket?>&correo=<?php echo $correo?>&estado=<?php echo $cambioEstadoPendiente?>">Pendiente</a>
-                    <a class="btn btn-primary" href="../vistas/infoTickets.php?buscarTicket=<?php echo $buscarTicket?>&correo=<?php echo $correo?>&estado=<?php echo $cambioEstado?>">Concluido</a>
+                    <a class="btn btn-primary" href="../vistas/infoTickets.php?buscarTicket=<?php echo $buscarTicket?>&correo=<?php echo $correo?>&estado=<?php echo $cambioEstado?>">Corregido</a>
                 </div>
             </div>
         </div>

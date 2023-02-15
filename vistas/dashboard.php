@@ -14,13 +14,13 @@ while ($mostrar = mysqli_fetch_array($result))
 $activo="Activo";
 $sqlActivos =  "SELECT * from tickets WHERE estado='$activo'";
 $result = mysqli_query($conexion, $sqlActivos);
-
 $numeroDatosActivos= mysqli_num_rows($result);
-$concluido="Concluido";
+
+$concluido="Corregido";
 $sqlActivos =  "SELECT * from tickets WHERE estado='$concluido'";
 $result = mysqli_query($conexion, $sqlActivos);
-
 $numeroConcluido= mysqli_num_rows($result);
+
 
 $sqlActivos =  "SELECT * from tickets";
 $result = mysqli_query($conexion, $sqlActivos);
@@ -31,6 +31,7 @@ $cuenta=0;
 }else{
 
     $cuenta=(($numeroConcluido)*100)/$numeroTotal;
+    $cuenta=round($cuenta,0);
 }
 
 $numeroTotal= mysqli_num_rows($result);
@@ -401,7 +402,7 @@ foreach($arregloConteoMeses as $meses){
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Intercarton</h1>
                         
                     </div>
 
@@ -452,7 +453,7 @@ foreach($arregloConteoMeses as $meses){
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $cuenta?></div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $cuenta."%"?></div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
@@ -543,7 +544,7 @@ foreach($arregloConteoMeses as $meses){
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Información Tickets</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -562,18 +563,18 @@ foreach($arregloConteoMeses as $meses){
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
+                                        <canvas id="myPieChart"><script>var activos= <?php echo $numeroDatosActivos?>;
+                                        var concluidos= <?php echo $numeroConcluido?>;
+                                        </script></canvas>
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
+                                            <i class="fas fa-circle text-primary"></i> Activos
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
+                                            <i class="fas fa-circle text-success"></i> Concluidos
                                         </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
+                                      
                                     </div>
                                 </div>
                             </div>
