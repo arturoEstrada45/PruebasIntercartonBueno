@@ -308,7 +308,7 @@ while ($mostrar = mysqli_fetch_array($result))
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Contratos</h1>
-    <a href="registerContrato.php?correo=<?php echo $correo ?>" target="_blank" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+    <a href="registerContrato.php?correo=<?php echo $correo ?>&estado=0" target="_blank" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
         class="fas fa-download fa-sm text-white-50"></i>Añadir Contrato</a>
 </div>
 
@@ -349,7 +349,11 @@ while ($mostrar = mysqli_fetch_array($result))
                                     {
                                     ?>
                                             <tr>
-                                                <td><?php echo $mostrar['contratoID'] ?></td>
+                                                <td ><a target="_blank"
+                            href="../vistas/infoContratos.php?contrato=<?php echo $mostrar['contratoID']?>&correo=<?php echo $correo?>"
+                             name="buscarServicio" value="<?php echo $mostrar['contratoID'] ?>" 
+                             id="buscarServicio">
+                                                    <?php echo $mostrar['contratoID'] ?></a></td>
                                                 <td><?php echo $mostrar['descripcion'] ?></td>
                                                 <td><?php echo $mostrar['proveedor'] ?></td>
                                                 <td><?php echo $mostrar['vigencia'] ?></td>

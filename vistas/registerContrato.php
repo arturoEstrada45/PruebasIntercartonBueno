@@ -1,6 +1,6 @@
 <?php
 $correo = $_REQUEST['correo'];
-$estado = "0";
+$estado = $_REQUEST['estado'];
 $conexion = mysqli_connect('localhost', 'root', '', 'intercartonpruebas');
 $sql =  "SELECT * from inventarios";
 $result = mysqli_query($conexion, $sql);
@@ -27,10 +27,27 @@ $result = mysqli_query($conexion, $sql);
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
+    <link href="../css/textos.css" rel="stylesheet">
 </head>
 
 <body class="bg-gradient-primary">
 
+    <?php if(!($estado=="0")){?>
+        <br>
+  <br>  
+<div class="container div" id="mensajeCont">
+        <div class="row">
+            <div class="col-1">
+            </div>
+            <div class="col-10 justify-content-center">
+                <div class="div div-mensaje" id="mensaje">
+                    <p><?php echo "Problema con tu archivo" ?></p>
+                </div>
+            </div>
+            <div class="col-1">
+            </div>
+        </div>
+    </div><?php }?>
     <div class="container">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
@@ -38,14 +55,14 @@ $result = mysqli_query($conexion, $sql);
                 <!-- Nested Row within Card Body -->
                 <div class="row">
                 <div class="col-lg-5 d-none d-lg-block">
-                        <img src="../img/registroContratos.jpg" width="500" height="410">
+                        <img src="../img/registroContratos.jpg" width="500" height="473">
                     </div>
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Agregar Contratos</h1>
                             </div>
-                            <form action="../php/conexion.php" method="POST" id="register">
+                            <form action="../php/conexion.php" method="POST" id="register" enctype="multipart/form-data">
                                 <div class="form-group" >
                                         <input type="text" class="form-control form-control-user" id="descripcion" name="descripcion"
                                             placeholder="Descripcion de contrato"  required data-toggle="tooltip">
@@ -62,7 +79,11 @@ $result = mysqli_query($conexion, $sql);
                                         <input type="text" class="form-control form-control-user" id="vigencia" name="vigencia"
                                             placeholder="Vigencia" pattern="([a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ0-9,.-_!#$%*+&/ ]{1,10000})"  required data-toggle="tooltip" data-placement="right" title="El correo debe ser de la empresa @intercarton.com.mx">
                                 </div>
-                                  
+                                <div class="form-group">
+                                <p>Selecciona archivo de Contrato</h1>
+                                
+                                <input type="file" class="form-control form-control-user" id="document" name="document">
+                             </div>
                                
                                 <button class="btn btn-primary btn-user btn-block" type="submit" name="registrarContrato" form="register">
                                     Registrar Contrato

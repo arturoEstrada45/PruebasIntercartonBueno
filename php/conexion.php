@@ -47,7 +47,21 @@ function conexion($con){
     $proveedor = $_POST['proveedor'];
     $vigencia = $_POST['vigencia'];
     $correo = $_POST['correo'];
-    Contratos::ingresaContrato($descripcion,$proveedor,$vigencia,$correo,$con);
+    $nombreDocument = $_FILES["document"]["name"];
+    $archivo_tipoDocument = $_FILES['document']['type'];
+    if($_FILES["document"]["tmp_name"]){
+      
+      $document = $_FILES['document']['tmp_name'];
+      
+      $documentContenido = addslashes(file_get_contents($document));
+Contratos::ingresaContrato($descripcion,$proveedor,$vigencia,$correo,$documentContenido,$archivo_tipoDocument,$nombreDocument,$con);
+    }
+
+    else {
+
+
+    }
+   
    }
    else if (isset($_POST['registrarEmpleado']))
    {
