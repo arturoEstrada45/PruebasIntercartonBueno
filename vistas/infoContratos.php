@@ -86,13 +86,10 @@ while ($mostrar = mysqli_fetch_array($result))
          
 
 </div>
+                                    
                                     <div class="text-center">
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="text-gray-400"></i>
-                                    Editar información
-                                </a>
+                                        <a class="small"href="../vistas/contratos.php?correo=<?php echo $correo?>">Regresar al menú.</a>
                                     </div>
-                                   
                                 </div>
                             </div>
                         </div>
@@ -113,53 +110,7 @@ while ($mostrar = mysqli_fetch_array($result))
                     </button>
                     
                 </div>
-                <div class="modal-body">
-                <form action="../php/conexion.php" method="POST" id="updateUser">
-                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <p class="mb-4">Cambio de correo</p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="correoCambio" name="correoCambio" value="<?php echo $empleadoID?>"
-                                            placeholder="ingresa correo nuevo" pattern="[a-zA-Z0-9.#$%&*+_-]{1,35}(@intercarton.com.mx){1}" required data-toggle="tooltip" title="El correo debe ser de la empresa @intercarton.com.mx">
-                                    </div>
-                </div>
-                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <p class="mb-4">Cambio nombre</p>
-                                    </div>
-                                    <input type="hidden" name="correo" id="correo" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="busca" aria-describedby="basic-addon2" value="<?php echo $correo ?>"> 
-                                <input type="hidden" name="correoBusqueda" id="correoBusqueda" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="busca" aria-describedby="basic-addon2" value="<?php echo $empleadoID ?>"> 
-                                    <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="nombre" name="nombre" value="<?php echo $nombre?>"
-                                            placeholder="Nuevo nombre" pattern="([a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ ]{1,35})" required data-toggle="tooltip">
-                                    </div>
-                                </div><div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <p class="mb-4">Cambio apellidos</p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="apellidos" name="apellidos" value="<?php echo $apellidos?>"
-                                            placeholder="Nuevos apellidos" pattern="([a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ ]{1,35})" required data-toggle="tooltip">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <p class="mb-4">Cambio contraseña plataforma</p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="contrasenia" name="contrasenia" value="<?php echo $contrasenia?>"
-                                            placeholder="Nueva Contraseña" required data-toggle="tooltip">
-                                    </div>
-                                </div>
-                    </form>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" type="submit" name="updateUser" form="updateUser">Actualizar usuario</button>
-                    <a class="btn btn-primary" href="#">Concluido</a>
-                </div>
-            </div>
+                
         </div>
     </div>
     </div>

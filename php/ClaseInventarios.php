@@ -20,6 +20,22 @@ class Inventarios
     }
        
     }
+
+    public static function actualizaInventario($correoCambio,$inventario,$ubicacion,$contrasenia,$correo,$con)
+    {
+        try{
+        $estado=0;
+        $sql = "UPDATE inventarios SET empleadoID='$correoCambio',ubicacion='$ubicacion',contrasenia='$contrasenia' WHERE equipoID='$inventario'";
+        mysqli_query($con, $sql);
+        mysqli_close($con);
+        header('location: ../vistas/infoInventary.php?inventario='. $inventario.'&correo='.$correo.'&estado='.$estado.'&estadoMenu='.$estado);
+        }catch (Exception $e){
+        $estado="Error al ingresar datos, posiblemente el usuario ya existe o no existe";
+        $estadoCero=0;
+        header('location: ../vistas/infoInventary.php?inventario='. $inventario.'&correo='.$correo.'&estado='.$estado.'&estadoMenu='.$estadoCero);
+    }
+    }
+    
     
 }
 

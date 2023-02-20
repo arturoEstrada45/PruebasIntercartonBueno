@@ -101,6 +101,28 @@ Contratos::ingresaContrato($descripcion,$proveedor,$vigencia,$correo,$documentCo
     Empleados::actualizaEmpleado($correoCambio,$correoBusqueda,$nombre,$apellidos,$contrasenia,$correo,$con);
    
     }
+
+    else if (isset($_POST['updateInventary']))
+    {
+      $correoCambio = $_POST['correoCambio'];
+      
+      $inventario = $_POST['inventario'];
+    $ubicacion = $_POST['ubicacion'];
+    $contrasenia = $_POST['contrasenia'];
+    $correo = $_POST['correo'];
+    Inventarios::actualizaInventario($correoCambio,$inventario,$ubicacion,$contrasenia,$correo,$con);
+   
+    }
+    else if (isset($_POST['updateLicencia']))
+    {
+      $estadoCambio = $_POST['estadoCambio'];
+      $licencia = $_POST['licencia'];
+      $correo = $_POST['correo'];
+      Licencia::actualizaLicencia($estadoCambio,$licencia,$correo,$con);
+   
+    }
+
+
 }
   
 ?>

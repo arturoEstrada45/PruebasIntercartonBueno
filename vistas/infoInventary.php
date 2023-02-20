@@ -1,5 +1,5 @@
 <?php
-$empleado=$_REQUEST['empleado'];
+$inventario=$_REQUEST['inventario'];
 $correo=$_REQUEST['correo'];
 $estado=$_REQUEST['estado'];
 
@@ -8,22 +8,21 @@ $estadoCuentas="1";
 
 $estadoUsuario="0";
 $conexion = mysqli_connect('localhost', 'root', '', 'intercartonpruebas');
-$sql =  "SELECT * from empleados WHERE empleadoID='$empleado'";
+$sql =  "SELECT * from inventarios WHERE equipoID='$inventario'";
 $result = mysqli_query($conexion, $sql);
 $cambioEstado="1";
 
 $cambioEstadoPendiente="0";
 while ($mostrar = mysqli_fetch_array($result)) 
 {
-        $empleadoID=$mostrar['empleadoID'];      
+        $inventarioID=$mostrar['equipoID'];      
         $nombre=$mostrar['nombre'];        
-        $apellidos=$mostrar['apellidos'];  
-        $area=$mostrar['area'];  
-        $contrasenia=$mostrar['contrasenia'];  
-        $cuentaIntelisis=$mostrar['cuentaIntelisis'];    
-        $contraseniaIntelisis=$mostrar['contraseniaIntelisis'];  
-        $cuentaServidor=$mostrar['cuentaServidor'];
-        $contraseniaServidor=$mostrar['contraseniaServidor'];
+        $ubicacion=$mostrar['ubicacion'];  
+        $descripcion=$mostrar['descripcion'];  
+        $empleadoID=$mostrar['empleadoID'];  
+        $serviceTag=$mostrar['serviceTag'];    
+        $cuentaInicioSesion=$mostrar['cuentaInicioSesion'];  
+        $contrasenia=$mostrar['contrasenia'];
 }
 
 ?>
@@ -38,7 +37,7 @@ while ($mostrar = mysqli_fetch_array($result))
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Información Empleado</title>
+    <title>Información Inventario</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -88,27 +87,28 @@ while ($mostrar = mysqli_fetch_array($result))
                                 <?php if($estadoMenu=="0"){?>
 <div class="text-center">
                                         
-<h1 class="h4 text-gray-900 mb-2">ID del empleado</h1>
+<h1 class="h4 text-gray-900 mb-2">ID del Inventario</h1>
+<p class="mb-4"><?php echo $inventarioID ?></p>
+<h1 class="h4 text-gray-900 mb-2">Nombre del equipo:</h1>
+<p class="mb-4"><?php echo $nombre  ?></p>
+<h1 class="h4 text-gray-900 mb-2">Descripción del equipo: </h1>
+<p class="mb-4"><?php echo $descripcion ?></p>
+<h1 class="h4 text-gray-900 mb-2">Dueño del equipo: </h1>
 <p class="mb-4"><?php echo $empleadoID ?></p>
-<h1 class="h4 text-gray-900 mb-2">Nombre del empleado:</h1>
-<p class="mb-4"><?php echo $nombre." ".$apellidos ?></p>
-<h1 class="h4 text-gray-900 mb-2">Area en la que trabaja: </h1>
-<p class="mb-4"><?php echo $area ?></p>
-<h1 class="h4 text-gray-900 mb-2">Contraseña incio sesion plataforma: </h1>
-<p class="mb-4"><?php echo $contrasenia ?></p>
+
 </div>
                                <?php } ?>
                                <?php if($estadoMenu=="1"){?>
 <div class="text-center">
                                         
-<h1 class="h4 text-gray-900 mb-2">Cuenta Intelisis</h1>
-<p class="mb-4"><?php echo $cuentaIntelisis ?></p>
-<h1 class="h4 text-gray-900 mb-2">Contraseña Intelisis:</h1>
-<p class="mb-4"><?php echo $contraseniaIntelisis?></p>
-<h1 class="h4 text-gray-900 mb-2">Cuenta Servidor</h1>
-<p class="mb-4"><?php echo $cuentaServidor ?></p>
-<h1 class="h4 text-gray-900 mb-2">Contraseña Servidor:</h1>
-<p class="mb-4"><?php echo $contraseniaServidor ?></p>
+<h1 class="h4 text-gray-900 mb-2">Ubicación del equipo: </h1>
+<p class="mb-4"><?php echo $ubicacion ?></p>
+<h1 class="h4 text-gray-900 mb-2">ServiceTag: </h1>
+<p class="mb-4"><?php echo $serviceTag ?></p>
+<h1 class="h4 text-gray-900 mb-2">Cuenta Computadora</h1>
+<p class="mb-4"><?php echo $cuentaInicioSesion ?></p>
+<h1 class="h4 text-gray-900 mb-2">Contraseña:</h1>
+<p class="mb-4"><?php echo $contrasenia ?></p>
 </div>
                                <?php } ?>
                                     <div class="text-center">
@@ -119,17 +119,16 @@ while ($mostrar = mysqli_fetch_array($result))
                                     </div>
                                     <?php if($estadoMenu=="0"){?>
                                         <div class="text-center">
-                                        <a class="small"href="../vistas/infoEmployees.php?empleado=<?php echo $empleadoID?>&correo=<?php echo $correo?>&estado=<?php echo $estado?>&estadoMenu=<?php echo $estadoCuentas?>">Información de cuentas.</a>
+                                        <a class="small"href="../vistas/infoInventary.php?inventario=<?php echo $inventarioID?>&correo=<?php echo $correo?>&estado=<?php echo $estado?>&estadoMenu=<?php echo $estadoCuentas?>">Más información.</a>
                                     </div>
                                <?php } ?>
                                <?php if($estadoMenu=="1"){?>
                                         <div class="text-center">
-                                        <a class="small" href="../vistas/infoEmployees.php?empleado=<?php echo $empleadoID?>&correo=<?php echo $correo?>&estado=<?php echo $estado?>&estadoMenu=<?php echo $estadoUsuario?>">Información de Usuario.</a>
+                                        <a class="small" href="../vistas/infoInventary.php?inventario=<?php echo $inventarioID?>&correo=<?php echo $correo?>&estado=<?php echo $estado?>&estadoMenu=<?php echo $estadoUsuario?>">Más información.</a>
                                     </div>
                                <?php } ?>
-
                                <div class="text-center">
-                                        <a class="small"href="../vistas/empleados.php?correo=<?php echo $correo?>">Regresar al menú.</a>
+                                        <a class="small"href="../vistas/inventary.php?correo=<?php echo $correo?>&estado=0">Regresar al menú.</a>
                                     </div>
                                 </div>
                             </div>
@@ -152,10 +151,10 @@ while ($mostrar = mysqli_fetch_array($result))
                     
                 </div>
                 <div class="modal-body">
-                <form action="../php/conexion.php" method="POST" id="updateUser">
+                <form action="../php/conexion.php" method="POST" id="updateInventary">
                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <p class="mb-4">Cambio de correo</p>
+                                        <p class="mb-4">Cambio de Dueño</p>
                                     </div>
                                     <div class="col-sm-6">
                                     <input type="text" class="form-control form-control-user" id="correoCambio" name="correoCambio" value="<?php echo $empleadoID?>"
@@ -164,37 +163,33 @@ while ($mostrar = mysqli_fetch_array($result))
                 </div>
                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <p class="mb-4">Cambio nombre</p>
+                                        <p class="mb-4">Cambio Area</p>
                                     </div>
+
                                     <input type="hidden" name="correo" id="correo" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="busca" aria-describedby="basic-addon2" value="<?php echo $correo ?>"> 
-                                <input type="hidden" name="correoBusqueda" id="correoBusqueda" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="busca" aria-describedby="basic-addon2" value="<?php echo $empleadoID ?>"> 
+                                <input type="hidden" name="inventario" id="inventario" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="busca" aria-describedby="basic-addon2" value="<?php echo $inventarioID ?>"> 
+
+
+
                                     <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="nombre" name="nombre" value="<?php echo $nombre?>"
-                                            placeholder="Nuevo nombre" pattern="([a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ ]{1,35})" required data-toggle="tooltip">
+                                    <input type="text" class="form-control form-control-user" id="ubicacion" name="ubicacion" value="<?php echo $ubicacion?>"
+                                            placeholder="Nueva ubicación"  required data-toggle="tooltip">
                                     </div>
                                 </div><div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <p class="mb-4">Cambio apellidos</p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="apellidos" name="apellidos" value="<?php echo $apellidos?>"
-                                            placeholder="Nuevos apellidos" pattern="([a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ ]{1,35})" required data-toggle="tooltip">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <p class="mb-4">Cambio contraseña plataforma</p>
+                                        <p class="mb-4">Cambio contraseña</p>
                                     </div>
                                     <div class="col-sm-6">
                                     <input type="text" class="form-control form-control-user" id="contrasenia" name="contrasenia" value="<?php echo $contrasenia?>"
-                                            placeholder="Nueva Contraseña" required data-toggle="tooltip">
+                                            placeholder="Nueva Contraseña"  required data-toggle="tooltip">
                                     </div>
                                 </div>
+                               
                     </form>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" type="submit" name="updateUser" form="updateUser">Actualizar usuario</button>
+                    <button class="btn btn-primary" type="submit" name="updateInventary" form="updateInventary">Actualizar Inventario</button>
                 </div>
             </div>
         </div>
