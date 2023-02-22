@@ -1,7 +1,11 @@
 <?php
 /*
-Proyecto realizado por Arturo Jimenez Estrada
-
+Proyecto realizado por: Arturo Jimenez Estrada
+Contacto para soporte:arturoestrada45@gmail.com
+Proyecto realizado para: Intercarton S. de R.L de C.V.
+Periodo de realización: Enero-Junio
+Propósito de la aplicación: Tener un sistema el cual nos sirva para enviar tickets, y mantener un inventario.
+Proyecto realizado con Bootstrap
 */
 $correo = $_REQUEST['correo'];
 $estado = "0";
