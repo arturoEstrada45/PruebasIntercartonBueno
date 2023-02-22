@@ -6,9 +6,9 @@ $estado = "0";
 $conexion = mysqli_connect('localhost', 'root', '', 'intercartonpruebas');
 
 
-$sql =  "SELECT * from notificaciones WHERE estado='No leido'";
-$result = mysqli_query($conexion, $sql);
-$numeroNotis= mysqli_num_rows($result);
+$sql =  "SELECT * from notificaciones WHERE estado='No leido' ORDER BY notificacionID DESC";
+$resultNotis = mysqli_query($conexion, $sql);
+$numeroNotis= mysqli_num_rows($resultNotis);
 
 
 
@@ -248,7 +248,7 @@ foreach($arregloConteoMeses as $meses){
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="test()">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter"><?php echo $numeroNotis ?><span>
@@ -259,9 +259,30 @@ foreach($arregloConteoMeses as $meses){
                                 <h6 class="dropdown-header">
                                     Notificaciones
                                 </h6>
+                                <?php while ($mostrarNotis = mysqli_fetch_array($resultNotis)){  ?>
+                                <a class="dropdown-item d-flex align-items-center" >
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500"><?php echo $mostrarNotis['fecha'];?></div>
+                                        <span class="font-weight-bold"><?php echo $mostrarNotis['descripcion']; ?></span>
+                                    </div>
+                                </a>
+                            <?php }  ?>
                             </div>
+                            
                         </li>
-
+                        <script>
+                        function test(){
+                        $.ajax({url:"../php/quitaNotis.php", 
+                            success:function(result){
+                              }
+                        })
+                        }
+                        </script>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -276,22 +297,10 @@ foreach($arregloConteoMeses as $meses){
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
+                                
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Cerrar Sesion
                                 </a>
                             </div>
                         </li>
@@ -672,15 +681,15 @@ foreach($arregloConteoMeses as $meses){
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Seleeciona "Cerrar Sesión" si estas listo para salir de tu sesión.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../index.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="../index.html">Cerrar Sesión</a>
                 </div>
             </div>
         </div>
