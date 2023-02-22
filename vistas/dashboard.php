@@ -1,4 +1,8 @@
 <?php
+/*
+Proyecto realizado por Arturo Jimenez Estrada
+
+*/
 $correo = $_REQUEST['correo'];
 $estado = "0";
 
