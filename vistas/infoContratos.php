@@ -79,11 +79,9 @@ while ($mostrar = mysqli_fetch_array($result))
 
 <?php if($numeroDatos!="0"){
     echo "<h1 class=h4 text-gray-900 mb-2>Documento del Contrato</h1>  
-<a href='../php/descargarDocumento.php?id=<?php echo $documentID ?>' >Descargar</a>";
+<a href=../php/descargarDocumento.php?id=<?php echo $documentID ?> >Descargar</a>";
 }?>
-    
-      
-         
+            
 
 </div>
                                     
