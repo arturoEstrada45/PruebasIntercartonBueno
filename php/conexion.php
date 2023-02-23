@@ -58,7 +58,8 @@ Contratos::ingresaContrato($descripcion,$proveedor,$vigencia,$correo,$documentCo
     }
 
     else {
-
+      $estado="En este caso si debes ingresar un documento del contrato";
+      header('location: ../vistas/registerContrato.php?correo=' . $correo.'&estado='.$estado);
 
     }
    

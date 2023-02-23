@@ -32,7 +32,7 @@ $result = mysqli_query($conexion, $sql);
 
 <body class="bg-gradient-primary">
 
-    <?php if(!($estado=="0")){?>
+    <?php if(!($estado=="0")){?> 
         <br>
   <br>  
 <div class="container div" id="mensajeCont">
@@ -41,7 +41,7 @@ $result = mysqli_query($conexion, $sql);
             </div>
             <div class="col-10 justify-content-center">
                 <div class="div div-mensaje" id="mensaje">
-                    <p><?php echo "Problema con tu archivo" ?></p>
+                    <p><?php echo $estado ?></p>
                 </div>
             </div>
             <div class="col-1">
