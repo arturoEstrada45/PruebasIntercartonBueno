@@ -81,7 +81,7 @@ $result = mysqli_query($conexion, $sql);
                                 aria-label="busca" aria-describedby="basic-addon2" value="<?php echo $correo ?>"> 
                             
                                     <input type="text" class="form-control form-control-user" id="proveedor" name="proveedor"
-                                        placeholder="Proveedor"  pattern="([a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ0-9,.-_!#$%*+&/ ]{1,10000})" required data-toggle="tooltip" data-placement="right" title="Solo letras, números y espacios">
+                                        placeholder="Proveedor y KEY"  required data-toggle="tooltip" data-placement="right" title="Solo letras, números y espacios">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
