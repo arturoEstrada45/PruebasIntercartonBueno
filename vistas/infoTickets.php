@@ -79,12 +79,13 @@ while ($mostrar = mysqli_fetch_array($result))
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
-                        <div class="row">
+                       
                             <?php if($imagenID!="No"){?>
                         <div class="panel-body "> <img target="_blank"src="../php/cargaImgTicket.php?id=<?php echo $imagenID?>"  width="505" height="505" alt='<?php echo $imagenID?>' />   
                               
                             </div>
                             <?php }?>
+                            <div class="row">
                             <div class="col-lg-6 d-none d-lg-block">
                             <div class="p-5">
                                     <div class="text-center">
