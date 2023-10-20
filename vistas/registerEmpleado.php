@@ -93,6 +93,10 @@ $result = mysqli_query($conexion, $sql);
                                             <option>Almacen</option>
                                             <option>Embarques</option>
                                             <option>Producción</option>
+                                            <option>Atención a clientes</option>
+                                            <option>Compras</option>
+                                            <option>Contabilidad</option>
+
                                           </select>        
                                 </div>
                                     <div class="col-sm-6">

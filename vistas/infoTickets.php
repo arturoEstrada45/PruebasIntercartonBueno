@@ -6,15 +6,7 @@ $estado=$_REQUEST['estado'];
 $conexion = mysqli_connect('localhost', 'root', '', 'intercartonpruebas');
 $cambioEstado=1;
 
-if($estado==1){
-    echo "<script> console.log($cambioEstado); </script>";
-    $fechaActual=date('Y-m-d');
-    $sql =  "UPDATE tickets SET estado='Corregido' WHERE ticketID='$buscarTicket'";
-    $result = mysqli_query($conexion, $sql);  
-    $sql =  "UPDATE tickets SET fechaCorreccion='$fechaActual' WHERE ticketID='$buscarTicket'";
-    $result = mysqli_query($conexion, $sql);  
-  
-}
+
 
 
 
@@ -40,7 +32,15 @@ while ($mostrar = mysqli_fetch_array($result))
         $imagenID=$mostrar['imagenID'];      
        }
 
-      
+       if($estado==1){
+        echo "<script> console.log($cambioEstado); </script>";
+        $fechaActual=date('Y-m-d');
+        $sql =  "UPDATE tickets SET estado='Corregido' WHERE ticketID='$buscarTicket'";
+        $result = mysqli_query($conexion, $sql);  
+        $sql =  "UPDATE tickets SET fechaCorreccion='$fechaActual' WHERE ticketID='$buscarTicket'";
+        $result = mysqli_query($conexion, $sql);  
+        header('location: ../php/envioCorreo.php?correo=' . $correo.'&soporteID='.$soporteID.'$solicitante'.$solicitante.'&asunto='.$asunto.'&ticket='.$ticketID);
+    }
 
 ?>
 <!DOCTYPE html>
