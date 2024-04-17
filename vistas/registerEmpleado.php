@@ -96,6 +96,8 @@ $result = mysqli_query($conexion, $sql);
                                             <option>Atención a clientes</option>
                                             <option>Compras</option>
                                             <option>Contabilidad</option>
+                                            <option>Calidad</option>
+                                            <option>Ventas</option>
 
                                           </select>        
                                 </div>

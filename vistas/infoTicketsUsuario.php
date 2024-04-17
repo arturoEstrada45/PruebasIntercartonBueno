@@ -110,16 +110,9 @@ while ($mostrar = mysqli_fetch_array($result))
                                         <p class="mb-4"><?php echo $soporteID ?></p>
                                     </div>
                                     
-                                    <div class="text-center">
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="text-gray-400"></i>
-                                    Cambiar estado
-                                 </a>
-                                    </div>
+                                   
                                 
-                                    <div class="text-center">
-                                        <a class="small" href="ticket.php?correo=<?php echo $correo ?>">Regresar a los tickets</a>
-                                    </div>
+                                    
                                 </div>
                              </div>
                             <div class="col-lg-6">
